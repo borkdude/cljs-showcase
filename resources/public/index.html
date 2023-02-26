@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="js/main.js" type="application/javascript"></script>
-  </head>
   <body>
-    <div id="app"></div>
+    Hi! Welcome to my CLJS showcase!
+    <div style="width: 600px;" class="cljs-showcase">(+ 1 2 3 4)</div>
+    <div style="width: 600px;" class="cljs-showcase">(require 'foo)</div>
+    <div style="width: 600px;" class="cljs-showcase">(-> (js/fetch "dude") (.then (fn [v] (.-status v))))</div>
+    <script src="js/main.js" type="application/javascript"></script>
   </body>
 </html>
