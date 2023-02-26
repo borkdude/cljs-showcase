@@ -33,7 +33,7 @@ jobs:
           bb release
 
       - name: Transform README
-      - uses: docker://pandoc/core:2.9
+        uses: docker://pandoc/core:2.9
         with:
           args: "README.md --output resources/public/README.html" # gets appended to pandoc command
 
