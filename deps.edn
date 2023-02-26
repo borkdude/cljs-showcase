@@ -1,0 +1,11 @@
+{:paths ["src" "resources"]
+
+ :deps
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.babashka/sci {:git/url "https://github.com/babashka/sci"
+                    :git/sha "a85c488ee45700bcbe67bc01ab1c27407fff7887"}
+  funcool/promesa {:mvn/version "10.0.575"}}
+ :aliases
+ {:dev
+  {:extra-paths ["dev"]
+   :extra-deps  {thheller/shadow-cljs {:mvn/version "2.21.0"}}}}}
