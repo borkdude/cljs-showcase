@@ -1,0 +1,3 @@
+{:tasks
+ {dev {:task (clojure "-M:dev -m shadow.cljs.cli watch main")}
+  release {:task (clojure "-M:dev -m shadow.cljs.cli release main")}}}
