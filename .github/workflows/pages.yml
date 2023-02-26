@@ -33,9 +33,8 @@ jobs:
           bb release
 
       - name: Transform README
-        uses: docker://pandoc/core:2.9
-        with:
-          args: "README.md --output resources/public/index.html" # gets appended to pandoc command
+        run: |
+          bb readme
 
         # To be able to deploy your own version you have to choose the
         # "GitHub Actions" option in your project settings.

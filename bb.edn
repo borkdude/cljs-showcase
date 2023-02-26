@@ -1,3 +1,7 @@
 {:tasks
  {dev {:task (clojure "-M:dev -m shadow.cljs.cli watch main")}
-  release {:task (clojure "-M:dev -m shadow.cljs.cli release main")}}}
+  release {:task (clojure "-M:dev -m shadow.cljs.cli release main")}
+  readme {:extra-deps {markdown-clj/markdown-clj {:mvn/version "1.11.4"}}
+          :requires ([babashka.fs :as fs]
+                     [markdown.core :as md])
+          :task (md/md-to-html "README.md" (str (fs/file "resources" "public" "index.html")))}}}
