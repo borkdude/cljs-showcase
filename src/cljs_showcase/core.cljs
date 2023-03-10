@@ -4,12 +4,12 @@
    ["@codemirror/view" :as cv]
    ["@nextjournal/lang-clojure" :as lc]
    ["codemirror" :as cm]
-   [promesa.core :as p]
-   [sci.core :as sci]
-   [sci.ctx-store :as ctx-store]
+   [clojure.pprint :as pp]
    [clojure.string :as str]
    [medley.core]
-   [clojure.pprint :as pp]))
+   [promesa.core :as p]
+   [sci.core :as sci]
+   [sci.ctx-store :as ctx-store]))
 
 (defn cm-string [cm-instance]
   (-> cm-instance .-state .-doc .toString))
@@ -18,7 +18,8 @@
                      :classes {'js js/globalThis
                                :allow :all
                                'Math js/Math}
-                     :ns-aliases {'clojure.pprint 'cljs.pprint}})]
+                     :ns-aliases {'clojure.pprint 'cljs.pprint
+                                  'clojure.spec.alpha 'cljs.spec.alpha}})]
   (ctx-store/reset-ctx! ctx))
 
 (defn eval-codemirror [cm-instance]
@@ -87,4 +88,10 @@
 
 (def medley-ns (sci/copy-ns medley.core (sci/create-ns 'medley.core)))
 
-(ctx-store/swap-ctx! sci/merge-opts {:namespaces {'medley.core medley-ns}})
+(def tns (sci/create-ns 'juxt.trip.core))
+(def trip-namespace (sci/copy-ns juxt.trip.core tns {:exclude-when-meta []}))
+
+(ctx-store/swap-ctx! sci/merge-opts {:namespaces {'medley.core medley-ns
+                                                  'juxt.trip.core trip-namespace}})
+
+(set! cljs.core/*eval* #(sci/eval-form (ctx-store/get-ctx) %))

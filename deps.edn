@@ -3,7 +3,8 @@
  :deps
  {org.clojure/clojure {:mvn/version "1.11.1"}
   org.babashka/sci {:git/url "https://github.com/babashka/sci"
-                    :git/sha "a85c488ee45700bcbe67bc01ab1c27407fff7887"}
+                    :git/sha "f1efb94e043777bb659deb5aaeb84e8e55d5bcf9"}
+  io.github.juxt/trip {:local/root "../trip"} #_{:git/tag "v0.5.0" :git/sha "8a1a1eb"}
   funcool/promesa {:mvn/version "10.0.575"}
   medley/medley {:mvn/version "1.4.0"}}
  :aliases
