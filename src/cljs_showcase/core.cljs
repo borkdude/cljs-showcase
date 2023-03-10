@@ -9,7 +9,8 @@
    [medley.core]
    [promesa.core :as p]
    [sci.core :as sci]
-   [sci.ctx-store :as ctx-store]))
+   [sci.ctx-store :as ctx-store]
+   [juxt.trip.core]))
 
 (defn cm-string [cm-instance]
   (-> cm-instance .-state .-doc .toString))
