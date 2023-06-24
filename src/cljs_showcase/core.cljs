@@ -21,10 +21,14 @@
                      :ns-aliases {'clojure.pprint 'cljs.pprint}})]
   (ctx-store/reset-ctx! ctx))
 
+(def last-ns (volatile! nil))
+
 (defn eval-codemirror [cm-instance]
   (try
     (let [code-str (cm-string cm-instance)
-          v (sci/eval-string* (ctx-store/get-ctx) code-str)]
+          {:keys [val ns]} (sci/eval-string+ (ctx-store/get-ctx) code-str {:ns @last-ns})
+          v val]
+      (vreset! last-ns ns)
       (if (instance? js/Promise v)
         (-> v
             (.then
