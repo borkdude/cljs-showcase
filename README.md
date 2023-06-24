@@ -15,6 +15,29 @@ add your own styling, of course.
 
 </div>
 
+Use data attributes to customize behavior:
+
+`data-cljs-showcase-no-editable="true"`
+
+<div style="width: 600px;" class="cljs-showcase" data-cljs-showcase-no-editable="true">
+"you can't edit me!"
+</div>
+
+`data-cljs-showcase-no-eval="true"`
+
+<div style="width: 600px;" class="cljs-showcase" data-cljs-showcase-no-eval="true">
+:you-cant-eval-me!
+</div>
+
+`data-cljs-showcase-no-eval-on-init="true"`
+
+<pre style="width: 600px;" class="cljs-showcase" data-cljs-showcase-no-eval-on-init="true">
+;; I will not evaluate until you trigger it!
+(defonce eval-ct (atom 0))
+(swap! eval-ct inc)
+@eval-ct
+</pre>
+
 Error messages also show up as results:
 
 <div style="width: 600px;" class="cljs-showcase">
