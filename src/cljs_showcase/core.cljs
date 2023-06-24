@@ -48,6 +48,8 @@
             no-editable? (.. elt -dataset -cljsShowcaseNoEditable)
             no-eval? (.. elt -dataset -cljsShowcaseNoEval)
             eval? (not no-eval?)
+            no-eval-on-init? (.. elt -dataset -cljsShowcaseNoEvalOnInit)
+            eval-on-init? (not no-eval-on-init?)
             doc (.-innerText elt)
             _ (set! (.-innerText elt) "")
             cm-ref (atom nil)
@@ -81,7 +83,7 @@
             (.appendChild elt btn)))
         (.appendChild elt res)
         (reset! cm-ref cm)
-        (when eval? (eval-me))))))
+        (when (and eval? eval-on-init?) (eval-me))))))
 
 (sci/alter-var-root sci/print-fn (constantly *print-fn*))
 (sci/alter-var-root sci/print-err-fn (constantly *print-err-fn*))
